@@ -63,10 +63,12 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $is_admin = $data['name'] == 'admin' ? 1 : 0;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'is_admin' => $is_admin
         ]);
     }
 }
