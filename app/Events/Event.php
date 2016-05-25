@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace UrlShortener\Events;
 
 abstract class Event
 {
