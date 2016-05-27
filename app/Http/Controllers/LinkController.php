@@ -1,7 +1,9 @@
 <?php
     namespace UrlShortener\Http\Controllers;
 
+    use Illuminate\Support\Facades\Auth;
     use UrlShortener\Http\Requests\LinkStoreRequest;
+    use UrlShortener\Models\Link;
 
     class LinkController extends Controller {
         public function __construct()
@@ -15,10 +17,32 @@
 
         public function store(LinkStoreRequest $request)
         {
+            $urlCheck = Link::where('realurl', '=', $request->realurl)->first();
+            if ($urlCheck) {
+                return redirect()->action('LinkController@show', [$urlCheck->shorturl]);
+            }
+            $shorturl = str_random(7);
+            $userId = Auth::check() ? Auth::user()->id : 1;
+            if (Link::create([
+                'shorturl' => $shorturl,
+                'realurl'  => rtrim($request->realurl, '/'),
+                'user_id'  => $userId
+            ])
+            ) {
+                return redirect('/' . $shorturl);
+            }
+            return redirect('/')->with('message', 'Something went wrong');
         }
 
-        public function show()
+        public function show($shorturl)
         {
-            return view('links.show');
+            $link = Link::where('shorturl', $shorturl)->firstOrFail();
+            if (count($link) > 0) {
+                $link->views_count += 1;
+                $link->save();
+                return view('links.show', compact('link'));
+            }
+            return redirect('/')->with('message', 'Link you requested does not exists');
         }
+
     }

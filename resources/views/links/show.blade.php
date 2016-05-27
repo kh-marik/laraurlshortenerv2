@@ -4,11 +4,11 @@
     <div class="jumbotron">
         <div class="show_url">
             <div class="show_url_urls">Requested url:</div>
-            <a href="{{ $url->realurl }}">{{ $url->realurl }}</a>
+            <a href="{{ $link->realurl }}">{{ $link->realurl }}</a>
             <div class="show_url_urls">Short url:</div>
-            <a href="{{ url('/'.$url->shorturl) }}">{{ url('/'.$url->shorturl) }}</a>
+            <a href="{{ url('/'.$link->shorturl) }}">{{ url('/'.$link->shorturl) }}</a>
             <div class="show_url_redirect">You will be redirected to
-                <span><a href="{{ $url->realurl }}">{{ $url->realurl }}</a></span> in 10 seconds... (Off for testing...)
+                <span><a href="{{ $link->realurl }}">{{ $link->realurl }}</a></span> in 10 seconds... (Off for testing...)
             </div>
         </div>
     </div>

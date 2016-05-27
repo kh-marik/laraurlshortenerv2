@@ -13,7 +13,7 @@ class LinkStoreRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class LinkStoreRequest extends Request
     public function rules()
     {
         return [
-            //
+            'realurl' => 'required|url'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'realurl.required' => 'Please, fill Url field',
+            'realurl.url' => 'Please, fill Url field with real address',
         ];
     }
 }
