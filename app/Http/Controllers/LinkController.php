@@ -17,11 +17,15 @@
 
         public function store(LinkStoreRequest $request)
         {
-            $urlCheck = Link::where('realurl', '=', $request->realurl)->first();
-            if ($urlCheck) {
-                return redirect()->action('LinkController@show', [$urlCheck->shorturl]);
+            $realUrlCheckForUnique = Link::where('realurl', '=', $request->realurl)->first();
+            if ($realUrlCheckForUnique) {
+                return redirect()->action('LinkController@show', [$realUrlCheckForUnique->shorturl]);
             }
-            $shorturl = str_random(7);
+            if ($request->shorturl && Auth::check()) {
+                $shorturl = $request->shorturl;
+            } else {
+                $shorturl = str_random(7);
+            }
             $userId = Auth::check() ? Auth::user()->id : 1;
             if (Link::create([
                 'shorturl' => $shorturl,

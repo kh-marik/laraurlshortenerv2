@@ -24,7 +24,8 @@ class LinkStoreRequest extends Request
     public function rules()
     {
         return [
-            'realurl' => 'required|url'
+            'realurl' => 'required|url',
+            'shorturl' => 'sometimes|string|regex:/[a-zA-Z0-9]/|unique:links,shorturl|size:7'
         ];
     }
 
@@ -33,6 +34,8 @@ class LinkStoreRequest extends Request
         return [
             'realurl.required' => 'Please, fill Url field',
             'realurl.url' => 'Please, fill Url field with real address',
+            'shorturl.regex' => 'Use only a-z, A-Z and 0-9 symbols',
+            'shorturl.unique' => 'This shorturl has already been taken, choose another'
         ];
     }
 }
