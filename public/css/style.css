@@ -1,7 +1,7 @@
 html, body {
     padding: 0;
     margin: 0;
-    overflow:  hidden;
+    overflow: hidden;
 }
 
 body {
@@ -32,10 +32,10 @@ body {
     color: #F4511E;
     opacity: .8;
 }
+
 .jumbotron legend {
     color: #EEEEEE;
 }
-
 
 .show_url_urls {
     font-size: 20px;
@@ -61,4 +61,8 @@ body {
 
 .alert {
     padding: 10px;
+}
+
+.mg-top-100 {
+    margin-top: 100px;
 }

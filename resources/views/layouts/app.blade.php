@@ -25,7 +25,16 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('about') }}">About</a></li>
-                    <li><a href="{{ url('contacts') }}">Contact</a></li>
+                    <li><a href="{{ url('contacts') }}">Contact</a>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if(Auth::check())
+                        <li><a href="#">Welcome, {{ Auth::user()->name }}</a></li>
+                        <li><a href="{{ url('logout') }}">Logout</a>
+                    @else
+                        <li><a href="{{ url('login') }}">Login</a></li>
+                        <li><a href="{{ url('register') }}">Register</a></li>
+                    @endif
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
