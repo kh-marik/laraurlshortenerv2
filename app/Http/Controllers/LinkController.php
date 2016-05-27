@@ -1,12 +1,24 @@
 <?php
+    namespace UrlShortener\Http\Controllers;
 
-namespace UrlShortener\Http\Controllers;
+    use UrlShortener\Http\Requests\LinkStoreRequest;
 
-use Illuminate\Http\Request;
+    class LinkController extends Controller {
+        public function __construct()
+        {
+        }
 
-use UrlShortener\Http\Requests;
+        public function index()
+        {
+            return view('index');
+        }
 
-class LinkController extends Controller
-{
-    //
-}
+        public function store(LinkStoreRequest $request)
+        {
+        }
+
+        public function show()
+        {
+            return view('links.show');
+        }
+    }
