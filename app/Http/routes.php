@@ -12,10 +12,11 @@
     Route::get('/', 'LinkController@index');
     Route::auth();
     Route::post('/', 'LinkController@store');
-    Route::get('/about', function () {
+    Route::get('about', function () {
         return view('links.about');
     });
-    Route::get('/contacts', function () {
+    Route::get('contacts', function () {
         return view('links.contacts');
     });
+    Route::get('mylinks', 'UserController@mylinks');
     Route::get('/{shorturl}', 'LinkController@show');

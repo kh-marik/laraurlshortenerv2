@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('urlshortener.title') }}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
 <body>
-
-    <nav class="navbar navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top" style="background: #262626;opacity: 0.8;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -29,8 +29,18 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if(Auth::check())
-                        <li><a href="#">Welcome, {{ Auth::user()->name }}</a></li>
-                        <li><a href="{{ url('logout') }}">Logout</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Welcome, {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                {{--@if(Auth::user()->is_admin)--}}
+                                    {{--<li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-paw"></i> Admin</a></li>--}}
+                                {{--@endif--}}
+                                <li><a href="{{ url('/mylinks') }}"><i class="fa fa-btn fa-link"></i> My Links</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
+                            </ul>
+                        </li>
                     @else
                         <li><a href="{{ url('login') }}">Login</a></li>
                         <li><a href="{{ url('register') }}">Register</a></li>

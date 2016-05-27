@@ -1,7 +1,6 @@
 html, body {
     padding: 0;
     margin: 0;
-    overflow: hidden;
 }
 
 body {
@@ -27,10 +26,14 @@ body {
 }
 
 .jumbotron {
-    margin: 25% auto;
+    margin: 100px auto;
     background: #212121;
     color: #F4511E;
     opacity: .8;
+}
+
+.jumbotron-margin-25 {
+    margin: 25% auto;
 }
 
 .jumbotron legend {
