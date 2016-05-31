@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('urlshortener.title') }}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
-<body style="overflow: hidden;">
+<body>
     <nav class="navbar navbar-fixed-top" style="background: #262626;opacity: 0.8;">
         <div class="container">
             <div class="navbar-header">
@@ -24,8 +25,16 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('about') }}">About</a></li>
-                    <li><a href="{{ url('contacts') }}">Contact</a>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Profile<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/cabinet/profile') }}"><i class="fa fa-btn fa-user"></i> Show profile</a></li>
+                            <li><a href="{{ url('/cabinet/profile/edit') }}"><i class="fa fa-btn fa-edit"></i> Edit profile</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url('cabinet/mylinks') }}">My Links</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if(Auth::check())
@@ -38,9 +47,6 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>
                         </li>
-                    @else
-                        <li><a href="{{ url('login') }}">Login</a></li>
-                        <li><a href="{{ url('register') }}">Register</a></li>
                     @endif
                 </ul>
             </div><!--/.nav-collapse -->
@@ -54,23 +60,7 @@
                 @include('common.flash_messages')
                 @include('common.form_errors')
             </div>
-            <div class="jumbotron jumbotron-margin-25">
-                <form action="{{ url('/') }}" method="POST">
-                    {!! csrf_field() !!}
-                    <div class="input-group">
-                        <input type="text" name="realurl" class="form-control" placeholder="Enter url to short" value="{{ old('realurl') }}">
-              <span class="input-group-btn">
-                <button class="btn btn-danger" type="submit">Short It!</button>
-              </span>
-                    </div>
-                    @if(Auth::check())
-                        <div class="input-group input-lg">
-                            <span class="input-group-addon" id="basic-addon3">Enter your own url (only 7 symbols long but not required) <strong>{{ config('app.url') }}/</strong></span>
-                            <input type="text" name="shorturl" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="mYuRl">
-                        </div>
-                    @endif
-                </form>
-            </div>
+            @yield('content')
         </div>
 
     </div><!-- /.container -->

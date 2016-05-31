@@ -17,8 +17,8 @@
 
         public function store(LinkStoreRequest $request)
         {
-            $realUrlCheckForUnique = Link::where('realurl', '=', rtrim($request->realurl, '/'))->first();
-            if (count($realUrlCheckForUnique) > 0) {
+            $realUrlCheckForUnique = Link::where('realurl', '=', rtrim($request->realurl, '/'))->orderBy('created_at', 'desc')->first();
+            if (count($realUrlCheckForUnique) > 0 && !Auth::check()) {
                 return redirect()->action('LinkController@show', [$realUrlCheckForUnique->shorturl]);
             }
             if ($request->shorturl && Auth::check()) {

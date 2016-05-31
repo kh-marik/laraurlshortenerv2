@@ -1,17 +1,62 @@
 <?php
+    namespace UrlShortener\Http\Controllers;
 
-namespace UrlShortener\Http\Controllers;
+    use Illuminate\Support\Facades\Auth;
+    use UrlShortener\Http\Requests;
+    use UrlShortener\Http\Requests\StoreProfileRequest;
+    use UrlShortener\Models\Link;
+    use UrlShortener\User;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use UrlShortener\Http\Requests;
-use UrlShortener\Models\Link;
+    class UserController extends Controller {
+        public function __construct()
+        {
+        }
 
-class UserController extends Controller
-{
-    public function mylinks()
-    {
-        $links = Link::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        return view('users.mylinks', compact('links'));
+        public function cabinet()
+        {
+            return view('users.cabinet');
+        }
+
+        public function mylinks()
+        {
+            $links = Link::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+            return view('users.mylinks', compact('links'));
+        }
+
+        public function profile()
+        {
+            return view('users.profile');
+        }
+
+        public function editProfile()
+        {
+            return view('users.editprofile');
+        }
+
+        public function storeProfile(StoreProfileRequest $request)
+        {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if (!empty($request->password)) {
+                $user->password = bcrypt($request->password);
+            }
+            if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+                $user->avatar = $this->makeFileName($request);
+                $this->uploadAvatar($request);
+            }
+            if($user->save()){
+                return redirect('cabinet/profile')->with('message', 'Profile updated');
+            }
+        }
+
+        protected function uploadAvatar(StoreProfileRequest $request)
+        {
+            $request->file('avatar')->move(public_path('images/avatars/'), $this->makeFileName($request));
+        }
+
+        protected function makeFileName(StoreProfileRequest $request)
+        {
+            return 'avatar_' . Auth::user()->id . '_' . $request->file('avatar')->getClientOriginalName();
+        }
     }
-}

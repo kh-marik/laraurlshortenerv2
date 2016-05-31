@@ -13,7 +13,8 @@
             'name',
             'email',
             'password',
-            'is_admin'
+            'is_admin',
+            'avatar'
         ];
 
         /**
@@ -28,6 +29,6 @@
 
         public function links()
         {
-            return $this->hasMany('UrlShortener\Links');
+            return $this->hasMany('UrlShortener\Models\Link');
         }
     }

@@ -17,6 +17,7 @@
                 $table->string('email')->unique();
                 $table->string('password');
                 $table->boolean('is_admin')->default(0);
+                $table->string('avatar')->default('');
                 $table->rememberToken();
                 $table->timestamps();
             });

@@ -10,13 +10,19 @@
     |
     */
     Route::get('/', 'LinkController@index');
-    Route::auth();
     Route::post('/', 'LinkController@store');
+    Route::auth();
     Route::get('about', function () {
         return view('links.about');
     });
     Route::get('contacts', function () {
         return view('links.contacts');
     });
-    Route::get('mylinks', 'UserController@mylinks');
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('cabinet', 'UserController@cabinet');
+        Route::get('cabinet/mylinks', 'UserController@mylinks');
+        Route::get('cabinet/profile', 'UserController@profile');
+        Route::get('cabinet/profile/edit', 'UserController@editProfile');
+        Route::post('cabinet/profile', 'UserController@storeProfile');
+    });
     Route::get('/{shorturl}', 'LinkController@show');

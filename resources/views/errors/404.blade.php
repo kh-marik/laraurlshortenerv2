@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Be right back.</title>
+    <title>4(eRRoR)4.</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            background: url("images/bg2.jpg");
+            background: url("/images/bg2.jpg");
             color: #B0BEC5;
             display: table;
             font-weight: 100;

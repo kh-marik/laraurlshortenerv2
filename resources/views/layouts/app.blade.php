@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('urlshortener.title') }}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -34,10 +35,7 @@
                                 Welcome, {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                {{--@if(Auth::user()->is_admin)--}}
-                                    {{--<li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-paw"></i> Admin</a></li>--}}
-                                {{--@endif--}}
-                                <li><a href="{{ url('/mylinks') }}"><i class="fa fa-btn fa-link"></i> My Links</a></li>
+                                <li><a href="{{ url('/cabinet') }}"><i class="fa fa-btn fa-desktop"></i> Cabinet</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>
                         </li>
