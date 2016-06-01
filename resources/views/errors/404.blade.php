@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            background: url("/images/bg2.jpg");
+            background: url("/site/bg2.jpg");
             color: #B0BEC5;
             display: table;
             font-weight: 100;

@@ -44,7 +44,7 @@
                                 @if(Auth::user()->avatar)
                                 {{ url('images/avatars/'.Auth::user()->avatar) }}
                                 @else
-                                {{ url('images/avatars/noavatar.gif') }}
+                                {{ url('site/default_noavatar.jpg') }}
                                 @endif
                                         ">
                                 Welcome, {{ Auth::user()->name }} <span class="caret"></span>

@@ -11,11 +11,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 text-center">
-                        <img class="img-circle avatar avatar-original" src="
-                    @if(Auth::user()->avatar)
+                        <img class="img-circle" src="
+                                @if(Auth::user()->avatar)
                         {{ url('images/avatars/'.Auth::user()->avatar) }}
                         @else
-                        {{ url('images/avatars/noavatar.gif') }}
+                        {{ url('site/default_noavatar.jpg') }}
                         @endif
                                 ">
                     </div>

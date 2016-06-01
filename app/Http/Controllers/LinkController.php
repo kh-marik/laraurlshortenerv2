@@ -1,6 +1,7 @@
 <?php
     namespace UrlShortener\Http\Controllers;
 
+    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use UrlShortener\Http\Requests\LinkStoreRequest;
     use UrlShortener\Models\Link;
@@ -10,9 +11,9 @@
         {
         }
 
-        public function index()
+        public function index(Request $request)
         {
-            return view('index');
+            return view('index', compact('request'));
         }
 
         public function store(LinkStoreRequest $request)

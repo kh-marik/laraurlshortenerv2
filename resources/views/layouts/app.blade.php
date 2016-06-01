@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
-<body>
+<body
+    @if(isset($request) && $request->path() == "/")
+        style="overflow: hidden";
+    @endif
+>
     <nav class="navbar navbar-fixed-top" style="background: #262626;opacity: 0.8;">
         <div class="container">
             <div class="navbar-header">
@@ -36,7 +40,7 @@
                                 @if(Auth::user()->avatar)
                                 {{ url('images/avatars/'.Auth::user()->avatar) }}
                                 @else
-                                {{ url('images/avatars/noavatar.gif') }}
+                                {{ url('site/default_noavatar.jpg') }}
                                 @endif
                                         ">
                                 Welcome, {{ Auth::user()->name }} <span class="caret"></span>
