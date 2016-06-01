@@ -12,6 +12,12 @@
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
             </div>
+            <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <input type="file" name="avatar">
+            </div>
+            <br>
+            <hr>
             <div class="fa-border">
                 <p>If you want to change password, enter new password and confirm it</p>
                 <div class="form-group">
@@ -23,10 +29,7 @@
                     <input type="password" class="form-control" name="password_confirmation" placeholder="Password">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="avatar">Avatar</label>
-                <input type="file" name="avatar">
-            </div>
+            <br>
             <button type="submit" class="btn btn-success">Update profile</button>
         </form>
     </div>
