@@ -57,6 +57,6 @@
 
         protected function makeFileName(StoreProfileRequest $request)
         {
-            return 'avatar_' . Auth::user()->id . '_' . $request->file('avatar')->getClientOriginalName();
+            return 'avatar_' . Auth::user()->id . '_' . date('YmdHis') . '.' . $request->file('avatar')->guessClientExtension();
         }
     }
