@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron">
         @if(count($links) > 0)
-            <table class="table table-stripped">
+            <table class="table table-condensed table-responsive">
                 <thead>
                 <tr>
                     <td>Real Url</td>
@@ -16,13 +16,13 @@
                 </thead>
                 <tbody>
                 @foreach($links as $link)
-                    <tr>
-                        <td><a href="{{ $link->realurl }}">{{ $link->realurl }}</a></td>
-                        <td><a href="{{ env('APP_URL') }}/{{ $link->shorturl }}">{{ env('APP_URL') }}/{{ $link->shorturl }}</a></td>
-                        <td>{{ $link->created_at }}</td>
-                        <td>{{ $link->views_count }}</td>
-                        <td>{{ $link->preview == 0 ? 'No': 'Yes'  }}</td>
-                        <td>{{ $link->advertise == 0 ? 'No' : 'Yes' }}</td>
+                    <tr style="word-break: break-all;">
+                        <td style="word-break: break-all;"><a href="{{ $link->realurl }}">{{ $link->realurl }}</a></td>
+                        <td style="word-break: break-all;"><a href="{{ env('APP_URL') }}/{{ $link->shorturl }}">{{ env('APP_URL') }}/{{ $link->shorturl }}</a></td>
+                        <td style="word-break: break-all;">{{ $link->created_at }}</td>
+                        <td style="word-break: break-all;">{{ $link->views_count }}</td>
+                        <td style="word-break: break-all;">{{ $link->preview == 0 ? 'No': 'Yes'  }}</td>
+                        <td style="word-break: break-all;">{{ $link->advertise == 0 ? 'No' : 'Yes' }}</td>
                     </tr>
                 @endforeach
                 </tbody>

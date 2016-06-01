@@ -11,6 +11,10 @@ body {
     color: #FF9800;
 }
 
+.bg-none {
+    background: none;
+}
+
 .container {
     width: 85%;
 }

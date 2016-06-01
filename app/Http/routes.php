@@ -24,5 +24,12 @@
         Route::get('cabinet/profile', 'UserController@profile');
         Route::get('cabinet/profile/edit', 'UserController@editProfile');
         Route::post('cabinet/profile', 'UserController@storeProfile');
+        Route::group(['middleware' => 'isadmin'], function() {
+            Route::get('adminplace', 'Admin\MainController@index');
+            Route::get('adminplace/users', 'Admin\MainController@users');
+            Route::get('adminplace/links', 'Admin\MainController@links');
+            Route::get('adminplace/advert', 'Admin\MainController@advert');
+        });
     });
+
     Route::get('/{shorturl}', 'LinkController@show');

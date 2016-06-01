@@ -46,6 +46,9 @@
                                 Welcome, {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
+                                @if(Auth::user()->is_admin == 1)
+                                    <li><a href="{{ url('/adminplace') }}"><i class="fa fa-btn fa-user-secret"></i> Adminplace</a></li>
+                                @endif
                                 <li><a href="{{ url('/cabinet') }}"><i class="fa fa-btn fa-desktop"></i> Cabinet</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>

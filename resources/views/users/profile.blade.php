@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <div class="panel panel-danger">
+        <div class="panel panel-danger bg-none">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12 lead">User profile
