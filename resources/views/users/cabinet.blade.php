@@ -7,7 +7,13 @@
         <div class="container" style="font-size: 90%;">
             <div class="row">
                 <div class="center-block">
-                    <img class="thumbnail center-block" src="{{ url('images/avatars/'.Auth::user()->avatar) }}">
+                    <img class="thumbnail center-block" src="
+                    @if(Auth::user()->avatar)
+                    {{ url('images/avatars/'.Auth::user()->avatar) }}
+                    @else
+                    {{ url('images/avatars/noavatar.gif') }}
+                    @endif
+                            ">
                 </div>
                 <div>
                     <a class="btn btn-info" href="{{ url('cabinet/mylinks') }}">Links <span class="badge">{{ count(Auth::user()->links) }}</span></a>
