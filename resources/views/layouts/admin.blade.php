@@ -31,23 +31,21 @@
                     <a href="/adminplace/advert"><i class="fa fa-industry fa-lg"></i> Advertisement</a>
                 </li>
                 {{--<li data-toggle="collapse" data-target="#new" class="collapsed">--}}
-                    {{--<a href="#"><i class="fa fa-plus-circle fa-lg"></i> New <span class="arrow"></span></a>--}}
+                {{--<a href="#"><i class="fa fa-plus-circle fa-lg"></i> New <span class="arrow"></span></a>--}}
                 {{--</li>--}}
                 {{--<ul class="sub-menu collapse" id="new">--}}
-                    {{--<li>New New 1</li>--}}
-                    {{--<li>New New 2</li>--}}
-                    {{--<li>New New 3</li>--}}
+                {{--<li>New New 1</li>--}}
+                {{--<li>New New 2</li>--}}
+                {{--<li>New New 3</li>--}}
                 {{--</ul>--}}
             </ul>
         </div>
     </div>
     <div class="container">
         <div class="center-top-block">
-            <div class="brand">
-                <div class="messages">
-                    @include('common.flash_messages')
-                    @include('common.form_errors')
-                </div>
+            <div class="messages">
+                @include('common.flash_messages')
+                @include('common.form_errors')
             </div>
         </div>
         @yield('content')

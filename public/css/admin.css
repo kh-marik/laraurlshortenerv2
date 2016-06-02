@@ -1,5 +1,10 @@
 body {
     background-color: #2e353d;
+    overflow-x: hidden;
+}
+
+.table-dark {
+    background: #2e353d;
 }
 
 .brand:hover {
@@ -23,7 +28,9 @@ body {
     margin-left: 10%;
     color: #e1ffff;
 }
-
+.panel-body {
+    background: #2e353d;
+}
 .nav-side-menu {
     overflow: auto;
     font-family: verdana;

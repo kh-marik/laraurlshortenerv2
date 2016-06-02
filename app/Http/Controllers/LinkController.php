@@ -43,11 +43,17 @@
         {
             $link = Link::where('shorturl', $shorturl)->firstOrFail();
             if (count($link) > 0) {
-                $link->views_count += 1;
-                $link->save();
+                $link->increment('views_count', 1);
                 return view('links.show', compact('link'));
             }
             return redirect('/')->with('message', 'Link you requested does not exists');
+        }
+
+        public function destroy($id)
+        {
+            $link = Link::findOrFail($id);
+            $link->delete();
+            return redirect('adminplace/links')->with('message', 'Link deleted');
         }
 
     }

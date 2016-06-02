@@ -27,7 +27,11 @@
         Route::group(['middleware' => 'isadmin'], function() {
             Route::get('adminplace', 'Admin\MainController@index');
             Route::get('adminplace/users', 'Admin\MainController@users');
+            Route::get('adminplace/users/{id}/edit', 'Admin\MainController@editUserProfile');
+            Route::post('adminplace/users/{id}', 'Admin\MainController@storeUserProfile');
+            Route::get('adminplace/users/{id}/delete', 'UserController@destroy');
             Route::get('adminplace/links', 'Admin\MainController@links');
+            Route::get('adminplace/links/{id}/delete', 'LinkController@destroy');
             Route::get('adminplace/advert', 'Admin\MainController@advert');
         });
     });

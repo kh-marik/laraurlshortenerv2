@@ -33,6 +33,13 @@
             return view('users.editprofile');
         }
 
+        public function destroy($id)
+        {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return view('adminplace/users')->with('message', 'User deleted');
+        }
+
         public function storeProfile(StoreProfileRequest $request)
         {
             $user = User::findOrFail(Auth::user()->id);
@@ -45,17 +52,17 @@
                 $user->avatar = $this->makeFileName($request);
                 $this->uploadAvatar($request);
             }
-            if($user->save()){
+            if ($user->save()) {
                 return redirect('cabinet/profile')->with('message', 'Profile updated');
             }
         }
 
-        protected function uploadAvatar(StoreProfileRequest $request)
+        public function uploadAvatar($request)
         {
             $request->file('avatar')->move(public_path('images/avatars/'), $this->makeFileName($request));
         }
 
-        protected function makeFileName(StoreProfileRequest $request)
+        public function makeFileName($request)
         {
             return 'avatar_' . Auth::user()->id . '_' . date('YmdHis') . '.' . $request->file('avatar')->guessClientExtension();
         }
