@@ -23,7 +23,7 @@
             return [
                 'name'     => 'required|max:255',
                 'password' => 'min:6|confirmed',
-                'email'    => 'required|email|max:255',
+                'email'    => 'required|email|max:255|unique:users,email,'. $this->id,
                 'avatar'   => 'image|dimensions:max_width=100,max_height=100'
             ];
         }

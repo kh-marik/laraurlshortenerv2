@@ -4,10 +4,14 @@
     use UrlShortener\Http\Controllers\UserController;
     use UrlShortener\Http\Requests;
     use UrlShortener\Http\Controllers\Controller;
+    use UrlShortener\Http\Requests\Admin\StoreProfileRequest;
+    use UrlShortener\Http\Requests\LinkStoreRequest;
     use UrlShortener\Models\Link;
     use UrlShortener\User;
 
     class MainController extends Controller {
+        protected $message = 'Something went wrong';
+
         public function __construct()
         {
         }
@@ -39,7 +43,7 @@
             return view('admin.usersprofile', compact('user'));
         }
 
-        public function storeUserProfile($id, Requests\Admin\StoreProfileRequest $request)
+        public function storeUserProfile($id, StoreProfileRequest $request)
         {
             $user = User::findOrFail($id);
             $user->name = $request->name;
@@ -56,16 +60,34 @@
                 $user->avatar = $userController->makeFileName($request);
                 $userController->uploadAvatar($request);
             }
-            $message = 'Something went wrong!';
             if ($user->save()) {
-                $message = 'User Profile Updated';
+                $this->message = 'User Profile Updated';
             }
-            return redirect('adminplace/users')->with('message', $message);
+            return redirect('adminplace/users')->with('message', $this->message);
+        }
+
+        public function editLink($id)
+        {
+            $link = Link::findOrFail($id);
+            return view('admin.editlink', compact('link'));
+        }
+
+        public function storeLink($id, LinkStoreRequest $request)
+        {
+            $link = Link::findOrFail($id);
+            $link->realurl = $request->realurl;
+            $link->shorturl = $request->shorturl;
+            $link->views_count = $request->views_count;
+            $link->preview = isset($request->preview) ? 1 : 0;
+            $link->advertise = isset($request->advertise) ? 1 : 0;
+            if ($link->save()) {
+                $this->message = 'Link updated';
+            }
+            return redirect('/adminplace/links')->with('message', $this->message);
         }
 
         public function advert()
         {
             return view('admin.advert');
         }
-
     }

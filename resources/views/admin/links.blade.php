@@ -20,6 +20,7 @@
                             <td>Views</td>
                             <td>Preview?</td>
                             <td>Advert?</td>
+                            <td>Edit</td>
                             <td>Delete</td>
                         </tr>
                         </thead>
@@ -32,6 +33,7 @@
                                 <td>{{ $link->views_count }}</td>
                                 <td>{{ $link->preview == 0 ? 'No' : 'Yes' }}</td>
                                 <td>{{ $link->advertise == 0 ? 'No' : 'Yes' }}</td>
+                                <td><a href="{{ url("adminplace/links/$link->id/edit") }}" class="btn btn-default btn-xs">Edit</a></td>
                                 <td><a href="{{ url("adminplace/links/$link->id/delete") }}" class="btn btn-default btn-xs">Delete</a></td>
                             </tr>
                         @endforeach

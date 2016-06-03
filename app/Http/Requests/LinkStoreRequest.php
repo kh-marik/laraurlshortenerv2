@@ -2,7 +2,6 @@
 
 namespace UrlShortener\Http\Requests;
 
-use UrlShortener\Http\Requests\Request;
 
 class LinkStoreRequest extends Request
 {
@@ -25,7 +24,7 @@ class LinkStoreRequest extends Request
     {
         return [
             'realurl' => 'required|url',
-            'shorturl' => 'sometimes|string|regex:/[a-zA-Z0-9]/|unique:links,shorturl|size:7'
+            'shorturl' => 'sometimes|string|regex:/[a-zA-Z0-9]/|size:7|unique:links,shorturl,' . $this->id
         ];
     }
 

@@ -31,9 +31,10 @@
             Route::post('adminplace/users/{id}', 'Admin\MainController@storeUserProfile');
             Route::get('adminplace/users/{id}/delete', 'UserController@destroy');
             Route::get('adminplace/links', 'Admin\MainController@links');
+            Route::get('adminplace/links/{id}/edit', 'Admin\MainController@editLink');
+            Route::post('adminplace/links/{id}', 'Admin\MainController@storeLink');
             Route::get('adminplace/links/{id}/delete', 'LinkController@destroy');
             Route::get('adminplace/advert', 'Admin\MainController@advert');
         });
     });
-
     Route::get('/{shorturl}', 'LinkController@show');
