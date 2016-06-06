@@ -17,8 +17,8 @@ class CreateLinksTable extends Migration
             $table->string('realurl')->default('');
             $table->string('shorturl')->default('');
             $table->integer('views_count')->default(0);
-            $table->boolean('preview')->default(0);
-            $table->boolean('advertise')->default(0);
+            $table->boolean('preview')->default(1);
+            $table->boolean('advertise')->default(1);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
 

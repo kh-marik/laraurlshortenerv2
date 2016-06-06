@@ -1,14 +1,4 @@
 <?php
-    /*
-    |--------------------------------------------------------------------------
-    | Application Routes
-    |--------------------------------------------------------------------------
-    |
-    | Here is where you can register all of the routes for an application.
-    | It's a breeze. Simply tell Laravel the URIs it should respond to
-    | and give it the controller to call when that URI is requested.
-    |
-    */
     Route::get('/', 'LinkController@index');
     Route::post('/', 'LinkController@store');
     Route::auth();
@@ -35,6 +25,11 @@
             Route::post('adminplace/links/{id}', 'Admin\MainController@storeLink');
             Route::get('adminplace/links/{id}/delete', 'LinkController@destroy');
             Route::get('adminplace/advert', 'Admin\MainController@advert');
+            Route::get('adminplace/advert/new', 'Admin\MainController@addAdvert');
+            Route::post('adminplace/advert/new', 'Admin\MainController@storeAdvert');
+            Route::get('adminplace/advert/{id}/edit', 'Admin\MainController@editAdvert');
+            Route::post('adminplace/advert/{id}', 'Admin\MainController@updateAdvert');
+            Route::get('adminplace/advert/{id}/delete', 'Admin\MainController@deleteAdvert');
         });
     });
     Route::get('/{shorturl}', 'LinkController@show');

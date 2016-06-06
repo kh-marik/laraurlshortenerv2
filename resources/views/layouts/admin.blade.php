@@ -7,9 +7,8 @@
     <title>{{ config('urlshortener.title') }}</title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel='stylesheet' type='text/css' href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-
 </head>
 <body>
     <div class="nav-side-menu">
@@ -27,17 +26,13 @@
                 <li>
                     <a href="/adminplace/links"><i class="fa fa-link fa-lg"></i> Links</a>
                 </li>
-                <li>
-                    <a href="/adminplace/advert"><i class="fa fa-industry fa-lg"></i> Advertisement</a>
+                <li data-toggle="collapse" data-target="#newadvert" class="collapsed">
+                    <a href="#"><i class="fa fa-industry fa-lg"></i> Advertisement <span class="arrow"></span></a>
                 </li>
-                {{--<li data-toggle="collapse" data-target="#new" class="collapsed">--}}
-                {{--<a href="#"><i class="fa fa-plus-circle fa-lg"></i> New <span class="arrow"></span></a>--}}
-                {{--</li>--}}
-                {{--<ul class="sub-menu collapse" id="new">--}}
-                {{--<li>New New 1</li>--}}
-                {{--<li>New New 2</li>--}}
-                {{--<li>New New 3</li>--}}
-                {{--</ul>--}}
+                <ul class="sub-menu collapse" id="newadvert">
+                    <li><a href="{{ url('adminplace/advert') }}">All Adverts</a></li>
+                    <li><a href="{{ url('adminplace/advert/new') }}">Add advert</a></li>
+                </ul>
             </ul>
         </div>
     </div>

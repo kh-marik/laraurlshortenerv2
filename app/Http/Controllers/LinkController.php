@@ -3,7 +3,9 @@
 
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\DB;
     use UrlShortener\Http\Requests\LinkStoreRequest;
+    use UrlShortener\Models\Advert;
     use UrlShortener\Models\Link;
 
     class LinkController extends Controller {
@@ -41,10 +43,19 @@
 
         public function show($shorturl)
         {
+            $advert = null;
+            $adverts = Advert::where('active', 1)->whereColumn('views_count', '<=', 'bought_views_count')->get();
+            if(count($adverts) > 0){
+                $advert = $adverts->random(1);
+                if($advert->views_count == $advert->bought_views_count -1){
+                    $advert->update(['active' => 0]);
+                }
+                $advert->increment('views_count', 1);
+            }
             $link = Link::where('shorturl', $shorturl)->firstOrFail();
             if (count($link) > 0) {
                 $link->increment('views_count', 1);
-                return view('links.show', compact('link'));
+                return view('links.show', compact('link', 'advert'));
             }
             return redirect('/')->with('message', 'Link you requested does not exists');
         }

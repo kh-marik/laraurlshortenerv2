@@ -31,10 +31,12 @@
             <div class="col-md-3">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        Column Header
+                        Advertiments
                     </div>
                     <div class="panel-body">
-                        Column body
+                        Total adverts - {{ $totalAdverts }} <br>
+                        Adverts added today - {{ $advertsAddedToday }} <br>
+                        Active adverts - {{ $activeAdverts }}
                     </div>
                 </div>
             </div>
